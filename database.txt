@@ -1,0 +1,88 @@
+﻿-- phpMyAdmin SQL Dump
+-- version 4.1.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: 2016-06-27 04:08:08
+-- 服务器版本： 5.6.17
+-- PHP Version: 5.5.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `wb_cms`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cms_admin`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_admin` (
+  `uid` int(10) NOT NULL AUTO_INCREMENT,
+  `account` varchar(20) NOT NULL,
+  `userName` varchar(20) NOT NULL,
+  `sex` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `regdate` datetime DEFAULT NULL COMMENT '注册时间',
+  `level` tinyint(1) NOT NULL COMMENT '用户权限 2:超级管理员 1：普通管理员',
+  `userKey` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cms_articles`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_articles` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `theme` varchar(200) NOT NULL COMMENT '文章标题',
+  `content` mediumtext NOT NULL COMMENT '文章内容',
+  `date` varchar(50) DEFAULT NULL,
+  `category` int(10) NOT NULL COMMENT '所属栏目',
+  `rank` int(10) NOT NULL COMMENT '排序',
+  `showed` tinyint(1) DEFAULT '1' COMMENT '是否显示',
+  `recommend` tinyint(1) DEFAULT '0' COMMENT '是否推荐',
+  `released` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cms_categories`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_categories` (
+  `cid` int(10) NOT NULL AUTO_INCREMENT COMMENT '栏目id',
+  `fid` int(10) DEFAULT '0' COMMENT '父栏目id',
+  `cname` varchar(20) NOT NULL COMMENT '栏目名称',
+  `alias` varchar(30) DEFAULT NULL COMMENT '别名',
+  `url` varchar(100) DEFAULT NULL,
+  `rank` int(5) DEFAULT NULL COMMENT '排序',
+  PRIMARY KEY (`cid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cms_site_info`
+--
+
+CREATE TABLE IF NOT EXISTS `cms_site_info` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `siteurl` varchar(100) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `logo` varchar(100) NOT NULL,
+  `date` varchar(50) DEFAULT NULL,
+  `tel` varchar(50) DEFAULT NULL,
+  `qq` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `closed` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
